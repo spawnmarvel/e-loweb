@@ -9,18 +9,7 @@ Make a env, install requirements.txt
 <br>
 Interface for NLP e-lo
 ```
-class MyCommand(Cmd):
-
-def do_math(self, args):
-def do_talk(self, args):
-def do_q(self, args):
-def do_txt_delete(self, args):
-def do_txt_get(self, args):
-def do_txt_files(self, args):
-def do_txt_index(self, args):
-def do_txt_search(self, args):
-def do_txt_data(self, args):
-def do_txt_summary(self, args):
+Interface
 ```
 
 
