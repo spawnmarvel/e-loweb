@@ -13,11 +13,11 @@ Interface for NLP e-lo
 
 ## ToDo
 
-* Feed e-lo text data: 95%
-* Analyze it / NLP: 30%
-* Report of data: 30%
+* Feed e-lo text data: 95%, must move from e-locmd
+* Analyze it / NLP: 30%, must move from e-locmd
+* Report of data: 30%, must move from e-locmd
 * Talk about it: 0%
-* Learn about it: 10%
+* Learn about it: 10%, must move from e-locmd
 
 
 ### Prerequisites
