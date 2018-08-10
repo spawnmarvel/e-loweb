@@ -6,10 +6,8 @@ These instructions will get you a copy of the project up and running on your loc
 Make a env, install requirements.txt
 <br>
 ### Build
-<br>
-Interface for NLP e-lo
 ```
-Interface
+Interface for NLP e-lo
 ```
 
 
