@@ -1,7 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
+from .models import Note
 # Create your views here.
 
 def index(request):
-    return HttpResponse("E-lo web, with Django, Gunicorn, Nginx on Digital Ocean. Django Admin testit.tech/admin")
+    rv = "E-loweb, django admin testit.tech/admin. "
+    # test()
+    data = Note.objects.all()
+    context = {"data": data}
+    rv += format(context)
+    # return HttpResponse(rv)
+    return render(request, "elo/index.html", context)
+
+
+def test():
+    n = Note(raw_text = "This is a test", sentences=1)
+    n.save()
 

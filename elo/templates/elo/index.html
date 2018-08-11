@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Index</title>
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'elo/style.css' %}">
+</head>
+
+<body>
+    {% load static %}
+    <h1>Django template e-lo</h1>
+    <br>
+    <a href="admin" target="_blank">Django Admin</a>
+    <!--<p>data: {{ data }}</p> -->
+    {% if data %}
+    <ul>
+        {% for d in data %}
+        <li>{{ d.id }}</li>
+        <li>{{ d.raw_text }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No raw_text</p>
+    {% endif %}
+
+    <br>
+    <h3>testit.tech is built with</h3>
+    <p>Digital Ocean cloud computing
+        <a href="https://www.digitalocean.com/" target="_blank"></a>
+    </p>
+    <p>Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design
+        <a href="https://www.djangoproject.com/" target="_blank">Django</a>
+    </p>
+    <p>SQLite is a self-contained, high-reliability, embedded, full-featured, public-domain, SQL database engine
+        <a href="https://www.sqlite.org/" target="_blank">Sqlite</a>
+    </p>
+    <p>Gunicorn 'Green Unicorn' is a Python WSGI HTTP Server for UNIX
+        <a href="http://gunicorn.org/" target="_blank">Gunicorn</a>
+    </p>
+    <p>NGINX is a free, open-source, high-performance HTTP server and reverse proxy
+        <A href="https://www.nginx.com/resources/wiki/" target="_blank">Nginx</a>
+    </p>
+</body>
+
+</html>
