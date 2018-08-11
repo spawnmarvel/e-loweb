@@ -49,7 +49,7 @@ Add additional notes about how to deploy this on a live system:
 ## Built With
 * [Django](https://www.djangoproject.com/) - The web framework used
 * [SQLite](https://www.sqlite.org/) - Database
-* [Bootstrap](https://getbootstrap.com/) - Bootstrap
+* [Bootstrap](https://getbootstrap.com/docs/3.3/getting-started/) - Bootstrap
 * [gunicorn](http://gunicorn.org/) - gunicorn
 * [nginx](https://www.nginx.com/resources/wiki/) - nginx
 
