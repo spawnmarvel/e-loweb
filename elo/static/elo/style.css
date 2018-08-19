@@ -1,4 +1,11 @@
-
-h1 {
+h2 {
     color: brown
+}
+
+
+.jumbotron {
+    /*background-color: bisque*/
+}
+.container {
+    /*background-color: aquamarine*/
 }
