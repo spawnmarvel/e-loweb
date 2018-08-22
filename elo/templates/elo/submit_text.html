@@ -1,0 +1,19 @@
+{% extends 'elo/base.html' %}
+{% block title %}Form{% endblock %}
+{% block content %}
+<h2>Form</h2>
+<!--https://django-bootstrap-form.readthedocs.io/en/latest/
+    https://django-bootstrap3.readthedocs.io/en/latest/quickstart.html
+-->
+
+{% load bootstrap %}
+
+
+<form action="/get_user_text" method="post">
+    {% csrf_token %}
+    {{ form|bootstrap }}
+    <input type="submit" value="Submit" class="btn btn-primary">
+</form>
+<p>{{ data }}</p>
+
+{% endblock %}

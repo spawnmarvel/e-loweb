@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from .models import Note
+from .forms import InputText
 # Create your views here.
 
 def index(request):
@@ -21,4 +22,19 @@ def about(request):
 def test():
     n = Note(raw_text = "This is a test", sentences=1)
     n.save()
+
+def get_user_text(request):
+    if request.method == "POST":
+        form = InputText(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data["inp_text"]
+            return render(request, "elo/submited_result.html", {"data": data})
+            # return HttpResponse("yes...." + data)
+            
+    else:
+        form = InputText()
+    return render(request, "elo/submit_text.html", {"form": form})
+        
+
+
 
