@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from .models import Note
 from .forms import InputText
 # Create your views here.
@@ -23,11 +24,14 @@ def test():
     n = Note(raw_text = "This is a test", sentences=1)
     n.save()
 
+# https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Authentication
+@login_required
 def get_user_text(request):
     if request.method == "POST":
         form = InputText(request.POST)
         if form.is_valid():
             data = form.cleaned_data["inp_text"]
+            data += "Well you made it"
             return render(request, "elo/submited_result.html", {"data": data})
             # return HttpResponse("yes...." + data)
             
