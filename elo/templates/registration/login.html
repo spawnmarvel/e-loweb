@@ -1,8 +1,4 @@
-{% extends 'elo/base.html' %}
-
-{% block content %}
-
-{% load bootstrap %}
+{% extends 'elo/base.html' %} {% block content %} {% load bootstrap %}
 
 <!--{% if form.errors %}
   <p>Your username and password didn't match. Please try again.</p>
@@ -17,16 +13,29 @@
   {% endif %}
 {% endif %}
     -->
+<h2>You must be logged in to use all functions</h2>
 <form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-{{ form|bootstrap }}
-<div>
-  <input type="submit" class="btn btn-primary" value="login"  />
-  <input type="hidden" name="next" value="{{ next }}" />
-</div>
+  {% csrf_token %} {{ form|bootstrap }}
+  <div>
+    <input type="submit" class="btn btn-primary" value="login" />
+    <input type="hidden" name="next" value="{{ next }}" />
+  </div>
 </form>
 
-{# Assumes you setup the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
+<br>
+
+
+<form method="post" action="{% url 'password_reset' %}">
+  {% csrf_token %} 
+  {# Assumes you setup the password_reset view in your URLconf #}
+  <p>
+    <!--<a href="{% url 'password_reset' %}">Lost password?</a> -->
+  </p>
+  <div>
+    <input type="submit" class="btn btn-primary" value="Lost password?" />
+    <input type="hidden" name="next" value="{{ next }}" />
+  </div>
+</form>
+
 
 {% endblock %}

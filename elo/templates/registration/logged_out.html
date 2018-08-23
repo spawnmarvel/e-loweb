@@ -1,6 +1,17 @@
 {% extends "elo/base.html" %}
-
+{% block title %}logged out {% endblock %}
 {% block content %}
-  <p>Logged out!</p>  
-  <a href="{% url 'login'%}">Click here to login again.</a>
+
+  <h2>Welcome back, you are now logged out</h2>
+  <br> 
+  <!--<a href="{% url 'login'%}">Click here to login again.</a> -->
+
+  {% load bootstrap %}
+  <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <div>
+          <input type="submit" class="btn btn-primary" value="login"  />
+          <input type="hidden" name="next" value="{{ next }}" />
+        </div>
+        </form>
 {% endblock %}

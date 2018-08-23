@@ -15,6 +15,7 @@
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 
+
     <!-- Custom styles for this template and Django static -->
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'elo/style.css' %}">
@@ -41,44 +42,47 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'about'%}">About</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admin" target="_blank">Django administration</a>
-                </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">e-lo</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="https://follow-e-lo.com/" target="_blank">follow-elo wordpress</a>
-                        <a class="dropdown-item" href="https://github.com/spawnmarvel/e-loweb" target="_blank">e-lo github</a>
-
-                    </div>
-                </li>
-                    <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">NLP</a>
                         <div class="dropdown-menu" aria-labelledby="dropdown02">
-                            <a class="dropdown-item" href="{% url 'get_user_text' %}">Process text input</a>
-                            <a class="dropdown-item" href="#">Process text db</a>
+                            <a class="dropdown-item" href="{% url 'process_text' %}">Process text input</a>
+                            <a class="dropdown-item" href="{% url 'process_db' %}">Process text db</a>
+    
+                        </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="admin" target="_blank">Django admin</a>
+                </li>
+                
+                <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">e-lo</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdown01">
+                            <a class="dropdown-item" href="https://follow-e-lo.com/" target="_blank">follow-elo wordpress</a>
+                            <a class="dropdown-item" href="https://github.com/spawnmarvel/e-loweb" target="_blank">e-lo github</a>
 
                         </div>
-                        
-                    </li>
+                </li>
 
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <span style="color:rgb(180, 230, 19)">{{ user.username }}</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/accounts/logout">Logout</a>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="/accounts/login">Login</a>
-                    </li>
-                    {% endif %}
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span style="color:rgb(180, 230, 19)">User: {{ user.username }}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/accounts/logout">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/accounts/login">Login</a>
+                </li>
+                {% endif %}
+
+                
+                
             </ul>
 
-        </div>
+        </div> <!-- end <div class="collapse navbar-collapse" id="nav-main"> -->
     </nav>
 
     <main>
