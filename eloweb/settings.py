@@ -21,7 +21,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # this config is not used in Digital Ocean
-SECRET_KEY = '7mv#4#z5p245wnwit=#(x!^9r(hpn2z=6o^hcdses7nroj5swn'
+SECRET_KEY = 'ThisIsNotUsedInProductionOnDigitalOcean....nope'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
