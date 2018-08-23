@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 # comment out this jekl
-# ALLOWED_HOSTS = ['www.testit.tech, '138.68.95.47', 'testit.tech']
+# ALLOWED_HOSTS = ['look in Digital Ocean settings']
 
 
 # Application definition
