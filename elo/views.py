@@ -93,7 +93,9 @@ def test_process_db(request):
     return render(request, "elo/test_submit_db.html", {"data": data})
 
         
-
+def test_rest(request):
+    data = {}
+    return render(request, "elo/test_rest.html", data)
 
 def error_404(request):
     data = {"data":404}
