@@ -9,7 +9,7 @@
 {% load bootstrap %}
 
 
-<form action="/process_text" method="post">
+<form action="/test_process_text" method="post">
     {% csrf_token %}
     {{ form|bootstrap }}
     <input type="submit" value="Submit" class="btn btn-primary">

@@ -5,6 +5,7 @@ from .models import Note
 from .forms import InputText
 import random
 import string
+from elo.elo_interface import interface_elo as elo
 # Create your views here.
 
 def index(request):
@@ -31,7 +32,7 @@ def process_text(request):
         form = InputText(request.POST)
         if form.is_valid():
             data = form.cleaned_data["inp_text"]
-            data += " Well you made it"
+            data += " Text from user"
             return render(request, "elo/submited_result.html", {"data": data})
             # return HttpResponse("yes...." + data)
             
@@ -68,7 +69,9 @@ def test_process_text(request):
         form = InputText(request.POST)
         if form.is_valid():
             data = form.cleaned_data["inp_text"]
-            data += " Well you made it"
+            data += " Text from user, add TextBlob, call elo"
+             # elo_blob = elo.Elo().toString() + " test"
+             # data = {"inp": inp, "elo": elo_blob}
             return render(request, "elo/test_submited_result.html", {"data": data})
             # return HttpResponse("yes...." + data)
             
