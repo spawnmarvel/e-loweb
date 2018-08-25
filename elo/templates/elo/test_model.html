@@ -1,0 +1,21 @@
+
+{% extends 'elo/base.html' %}
+{% block content %}
+<h2>Django Model test</h2>
+    <p>Model test Note.objects.all() = </p>
+    {% if data %}
+    <ul>
+        {% for d in data %}
+        <li>{{ d.id }}</li>
+        <li>{{ d.raw_text }}</li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No raw_text</p>
+    {% endif %}
+
+    <p>Django Model test count Note.objects.count() =</p>
+<ul>
+<li>{{ amount }}</li>
+</ul>
+{% endblock %}

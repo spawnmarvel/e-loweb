@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import handler404, handler500
+from elo import views as elo_views
 
 urlpatterns = [
     path("", include("elo.urls")),
     path('admin/', admin.site.urls),
 ]
+handler404 = elo_views.error_404
+handler500 = elo_views.error_500

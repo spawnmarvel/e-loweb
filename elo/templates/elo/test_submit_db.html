@@ -1,0 +1,26 @@
+{% extends "elo/base.html" %}
+{% block title %}Process db {% endblock %}
+{% block content %}
+<h2>Process db test</h2>
+<p>{{ data }}</p>
+<p>{{ data.tag }}</p>
+<p>{{ data.li }}</p>
+<h3>Dictionary test</h3>
+<p>{% for k, v in data.items %}
+
+   <p>Key: {{ k }}  Value:  {{ v }} </p>
+
+    {% endfor %}
+
+</p>
+
+{% load bootstrap %}
+  <form method="post" action="{% url 'process_db' %}">
+        {% csrf_token %}
+        <div>
+          <input type="submit" class="btn btn-primary" value="Rand"  />
+          <input type="hidden" name="next" value="{{ next }}" />
+        </div>
+        </form>
+
+{% endblock %}
