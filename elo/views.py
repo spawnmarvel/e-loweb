@@ -8,6 +8,8 @@ import string
 from elo.elo_interface import interface_elo as elo
 # Create your views here.
 
+#####################################################
+#prod
 def index(request):
     rv = "E-loweb, django admin testit.tech/admin. "
     # test()
@@ -15,13 +17,13 @@ def index(request):
     context = {"data": data}
     rv += format(context)
     # return HttpResponse(rv)
-    return render(request, "elo/index.html", context)
+    return render(request, "elo/home/index.html", context)
 
 
 def about(request):
     data = ""
     context = {"data": data}
-    return render(request, "elo/about.html", context)
+    return render(request, "elo/home/about.html", context)
 
 def test():
     n = Note(raw_text = "This is a test", sentences=1)
@@ -33,12 +35,12 @@ def process_text(request):
         if form.is_valid():
             data = form.cleaned_data["inp_text"]
             data += " Text from user"
-            return render(request, "elo/submited_result.html", {"data": data})
+            return render(request, "elo/prod_text/text_result.html", {"data": data})
             # return HttpResponse("yes...." + data)
             
     else:
         form = InputText()
-    return render(request, "elo/submit_text.html", {"form": form})
+    return render(request, "elo/prod_text/text_submit.html", {"form": form})
 
 
 # https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Authentication
@@ -52,8 +54,11 @@ def process_db(request):
     tmmm = random.choice(string.ascii_letters)
     tag = tm + tmm + tmmm
     data = {"tag":"a test tag " + tag, "li":li}
-    return render(request, "elo/submit_db.html", {"data": data})
+    return render(request, "elo/prod_db/db_submit.html", {"data": data})
 
+
+###################################
+#qa
 def test_model(request):
     rv = "E-loweb, django admin testit.tech/admin. "
     # test()
@@ -62,22 +67,8 @@ def test_model(request):
     context = {"data": data, "amount": amount}
     rv += format(context)
     # return HttpResponse(rv)
-    return render(request, "elo/test_model.html", context)
+    return render(request, "elo/qa_text/test_model.html", context)
 
-def test_process_text(request):
-    if request.method == "POST":
-        form = InputText(request.POST)
-        if form.is_valid():
-            data = form.cleaned_data["inp_text"]
-            data += " Text from user, add TextBlob, call elo"
-             # elo_blob = elo.Elo().toString() + " test"
-             # data = {"inp": inp, "elo": elo_blob}
-            return render(request, "elo/test_submited_result.html", {"data": data})
-            # return HttpResponse("yes...." + data)
-            
-    else:
-        form = InputText()
-    return render(request, "elo/test_submit_text.html", {"form": form})
 
 # https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Authentication
 @login_required
@@ -90,12 +81,34 @@ def test_process_db(request):
     tmmm = random.choice(string.ascii_letters)
     tag = tm + tmm + tmmm
     data = {"tag":"a test tag " + tag, "li":li}
-    return render(request, "elo/test_submit_db.html", {"data": data})
+    return render(request, "elo/qa_db/test_submit_db.html", {"data": data})
 
-        
+def test_get_processed_db(request):
+    tmp = list(Note.objects.values_list("title", flat=True))
+    data = {1:tmp}
+    return render(request, "elo/qa_db/test_db_result.html",{"data": data})
+
+
+def test_process_text(request):
+    if request.method == "POST":
+        form = InputText(request.POST)
+        if form.is_valid():
+            inp = form.cleaned_data["inp_text"]
+            tit = form.cleaned_data["inp_title"]
+            dt = " Process with elo"
+            data = {"inp":inp, "tit":tit, "dt":dt}
+             # elo_blob = elo.Elo().toString() + " test"
+             # data = {"inp": inp, "elo": elo_blob}
+            return render(request, "elo/qa_text/test_submited_result.html", {"data": data})
+            # return HttpResponse("yes...." + data)
+            
+    else:
+        form = InputText()
+    return render(request, "elo/qa_text/test_submit_text.html", {"form": form})
+
 def test_rest(request):
     data = {}
-    return render(request, "elo/test_rest.html", data)
+    return render(request, "elo/qa_text/test_rest.html", data)
 
 def error_404(request):
     data = {"data":404}
