@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Note
-from .forms import InputText
+from .forms import InputText, InputTextQA, DropDownTopic
 import random
 import string
 from elo.elo_interface import interface_elo as elo
@@ -43,20 +43,6 @@ def process_text(request):
     return render(request, "elo/prod_text/text_submit.html", {"form": form})
 
 
-# https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Authentication
-@login_required
-def process_db(request):
-    r = random.randint(0, 50)
-    rr = random.randint(0, 10)
-    li = [1,2,r,rr]
-    tm = random.choice(string.ascii_letters)
-    tmm = random.choice(string.ascii_letters)
-    tmmm = random.choice(string.ascii_letters)
-    tag = tm + tmm + tmmm
-    data = {"tag":"a test tag " + tag, "li":li}
-    return render(request, "elo/prod_db/db_submit.html", {"data": data})
-
-
 ###################################
 #qa
 def test_model(request):
@@ -84,19 +70,34 @@ def test_process_db(request):
     return render(request, "elo/qa_db/test_submit_db.html", {"data": data})
 
 def test_get_processed_db(request):
-    tmp = list(Note.objects.values_list("title", flat=True))
-    data = {1:tmp}
-    return render(request, "elo/qa_db/test_db_result.html",{"data": data})
+    title = list(Note.objects.values_list("title", flat=True))
+    note = None
+    cmd = "GET"
+    form = DropDownTopic()
+    if request.method == "POST":
+        cmd = "POST"
+        form = DropDownTopic(request.POST)
+        if form.is_valid():
+            topic = form.cleaned_data["topic"]
+            # rv = topic
+            note = Note.objects.filter(title=topic)
+            # return HttpResponse("tile " + topic)
+        else:
+            fetch_text ="not valid form"
+    else:
+        form = DropDownTopic()
+    data = {"title":title, "note":note, "cmd":cmd, "form":form}
+    # return render(request, "elo/qa_db/test_db_result.html",{"data": data})
+    return render(request, "elo/qa_db/test_db_result.html", {"data": data})
 
 
 def test_process_text(request):
     if request.method == "POST":
-        form = InputText(request.POST)
+        form = InputTextQA(request.POST)
         if form.is_valid():
             inp = form.cleaned_data["inp_text"]
-            tit = form.cleaned_data["inp_title"]
             dt = " Process with elo"
-            data = {"inp":inp, "tit":tit, "dt":dt}
+            data = {"inp":inp, "dt":dt}
              # elo_blob = elo.Elo().toString() + " test"
              # data = {"inp": inp, "elo": elo_blob}
             return render(request, "elo/qa_text/test_submited_result.html", {"data": data})

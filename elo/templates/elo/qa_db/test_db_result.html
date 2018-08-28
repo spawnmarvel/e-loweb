@@ -1,40 +1,25 @@
 {% extends "elo/base.html" %} {% block title %}Process db {% endblock %} {% block content %} {% load bootstrap %}
 <h2>Get process db test</h2>
-
-
-<div class="form-group">
-  <label for="sel1">Select text:</label>
-  <select class="form-control" id="sel1">
-      {% for l in data.1 %}
-    <option>{{ l }}</option>
-    {% endfor %}
-  </select>
-</div> 
-
+{% load bootstrap %}
 
 <form method="post" action="{% url 'test_get_processed_db' %}">
-  {% csrf_token %}
-
+  {% csrf_token %} {{ data.form|bootstrap}}
   <div>
-    <input type="submit" class="btn btn-primary" value="Get" />
+    <input type="submit" class="btn btn-primary" value="Get" name="action" value="GetTopic" />
     <input type="hidden" name="next" value="{{ next }}" />
   </div>
 </form>
+<p> {{ data.note }}</p>
 <small>
-  <br>
-Present the text with NLP
-<br>
-Test: {{ data }}
-<br>
-dict
-{% for k, v in data.items %}
-
-Key: {{ k }} Value: {{ v }}
-
-{% endfor %}
-<br>
-List
-{{ data.1}}
+  <br>Test data:
+  <br>title: {{ data.title}}
+  <br>note : {{ data.note }}
+  <br>cmd: {{ data.cmd }}
+  <br>dict:{{ data.items}}
+  <!--<br>{% for k, v in data.items %} Key: {{ k }} Value: {{ v }} {% endfor %}
+  <br>form: {{ data.form}}
+  -->
+    
 </small>
 
 {% endblock %}
