@@ -84,7 +84,9 @@ def test_get_processed_db(request):
             # return HttpResponse("tile " + topic)
         else:
             fetch_text ="not valid form"
+    # GET
     else:
+        title = list(Note.objects.values_list("title", flat=True))
         form = DropDownTopic()
     data = {"title":title, "note":note, "cmd":cmd, "form":form}
     # return render(request, "elo/qa_db/test_db_result.html",{"data": data})
