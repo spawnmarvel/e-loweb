@@ -1,4 +1,4 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, render_to_response
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Note
@@ -70,7 +70,7 @@ def test_process_db(request):
     return render(request, "elo/qa_db/test_submit_db.html", {"data": data})
 
 def test_get_processed_db(request):
-    title = list(Note.objects.values_list("title", flat=True))
+    title = "fix" #list(Note.objects.values_list("title", flat=True))
     note = None
     cmd = "GET"
     form = DropDownTopic()
@@ -82,11 +82,14 @@ def test_get_processed_db(request):
             # rv = topic
             note = Note.objects.filter(title=topic)
             # return HttpResponse("tile " + topic)
+            cmd = "hm...."
+            data = {"title":title, "note":note, "cmd":cmd, "form":form}
+            return render(request, "elo/qa_db/test_db_result.html", {"data":data})
         else:
             fetch_text ="not valid form"
     # GET
     else:
-        title = list(Note.objects.values_list("title", flat=True))
+        title = "fix" #list(Note.objects.values_list("title", flat=True))
         form = DropDownTopic()
     data = {"title":title, "note":note, "cmd":cmd, "form":form}
     # return render(request, "elo/qa_db/test_db_result.html",{"data": data})
