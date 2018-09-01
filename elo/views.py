@@ -45,6 +45,7 @@ def process_text(request):
 
 ###################################
 #qa
+@login_required
 def test_model(request):
     rv = "E-loweb, django admin testit.tech/admin. "
     # test()
@@ -69,8 +70,9 @@ def test_process_db(request):
     data = {"tag":"a test tag " + tag, "li":li}
     return render(request, "elo/qa_db/test_submit_db.html", {"data": data})
 
+@login_required
 def test_get_processed_db(request):
-    title = "fix" #list(Note.objects.values_list("title", flat=True))
+    title = list(Note.objects.values_list("title", flat=True))
     note = None
     cmd = "GET"
     form = DropDownTopic()
@@ -89,7 +91,7 @@ def test_get_processed_db(request):
             fetch_text ="not valid form"
     # GET
     else:
-        title = "fix" #list(Note.objects.values_list("title", flat=True))
+        title = list(Note.objects.values_list("title", flat=True))
         form = DropDownTopic()
     data = {"title":title, "note":note, "cmd":cmd, "form":form}
     # return render(request, "elo/qa_db/test_db_result.html",{"data": data})
@@ -102,9 +104,8 @@ def test_process_text(request):
         if form.is_valid():
             inp = form.cleaned_data["inp_text"]
             dt = " Process with elo"
-            data = {"inp":inp, "dt":dt}
-             # elo_blob = elo.Elo().toString() + " test"
-             # data = {"inp": inp, "elo": elo_blob}
+            elo_blob = elo.Elo().toString()
+            data = {"inp":inp, "dt":dt,"elo":elo_blob}
             return render(request, "elo/qa_text/test_submited_result.html", {"data": data})
             # return HttpResponse("yes...." + data)
             
