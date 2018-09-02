@@ -3,11 +3,25 @@
 {% block content %}
 <h2>Process text result test</h2>
 <!--<a class="nav-link" href="process_text">Process new text input</a> -->
-<p>Text: {{ data.inp }}</p>
 <p>Comment: {{ data.dt }}</p>
-<p>{{ data.elo }}</p>
-
+<p>Data: <br>{{ data.elo }}</p>
 {% load bootstrap %}
+
+
+
+<!-- text section  -->
+<div class="panel-group">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" class="btn btn-primary" href="#collapse3">Show text</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <br>
+        <p>{{ data.inp }}</p>
+      </div>
+  </div>
+
 <br>
   <form method="post" action="{% url 'test_process_text' %}">
         {% csrf_token %}

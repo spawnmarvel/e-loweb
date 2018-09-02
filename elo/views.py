@@ -104,7 +104,8 @@ def test_process_text(request):
         if form.is_valid():
             inp = form.cleaned_data["inp_text"]
             dt = " Process with elo"
-            elo_blob = elo.Elo().toString()
+            # process inp with elo
+            elo_blob = elo.Elo().text_summary(inp)
             data = {"inp":inp, "dt":dt,"elo":elo_blob}
             return render(request, "elo/qa_text/test_submited_result.html", {"data": data})
             # return HttpResponse("yes...." + data)

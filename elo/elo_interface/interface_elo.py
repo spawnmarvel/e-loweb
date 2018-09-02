@@ -23,3 +23,12 @@ class Elo():
     # implemented
     def toString(self):
         return format(self.name) + ". Age " + format(self.age) + ". V" + format(self.version)
+
+    def text_summary(self, args):
+        txt = args
+        blob = TextBlob(txt)
+        noun = []
+        for np in blob.noun_phrases:
+            noun.append(np)
+
+        return "TextBlob: " + format(noun)
