@@ -27,8 +27,40 @@ class Elo():
     def text_summary(self, args):
         txt = args
         blob = TextBlob(txt)
-        noun = []
-        for np in blob.noun_phrases:
-            noun.append(np)
+        nouns = set()
+        for word, tag in blob.tags:
+            if tag == "NN":
+                nouns.add(word.lemmatize())
+        plural = set()
+        for n in nouns:
+             plural.add(n.pluralize())
 
-        return "TextBlob: " + format(noun)
+        return format(plural)
+
+    def text_insert(self, args):
+        txt = args
+        words_len = 0
+        msg = ""
+        summary = ""
+        try:
+            cont = txt.split(".")
+            sentence_len = len(cont) - 1
+            for i, v in enumerate(cont):
+                x =  v.replace('"', '')
+                msg += x
+                # need to add back ., since we splitt on it...
+                msg += "."
+            word = msg.split(" ")
+            words_len = len(word)
+            summary = self.text_summary(msg)
+        except UnicodeDecodeError as uce:
+            msg = format(uce)
+        except Exception as ex:
+            msg = format(ex)
+        #remove the last - we added
+        rm_last = len(msg)
+        msg = msg[:rm_last - 1]
+        tu = (msg, sentence_len, words_len, summary)
+        return tu
+
+

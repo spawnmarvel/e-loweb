@@ -1,33 +1,34 @@
-{% extends 'elo/base.html' %}
-{% block title %}Process text{% endblock %}
-{% block content %}
+{% extends 'elo/base.html' %} {% block title %}Process text{% endblock %} {% block content %}
 <h2>Process text result test</h2>
 <!--<a class="nav-link" href="process_text">Process new text input</a> -->
 <p>Comment: {{ data.dt }}</p>
-<p>Data: <br>{{ data.elo }}</p>
+<!--<p>Text: <br>{{ data.elo.0 }}</p>-->
+<p>Sentences: {{ data.elo.1 }}. Words: {{ data.elo.2 }}</p>
+<p>Text is about:
+  <br>{{ data.elo.3 }}</p>
 {% load bootstrap %}
 
 
 
 <!-- text section  -->
 <div class="panel-group">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" class="btn btn-primary" href="#collapse3">Show text</a>
-        </h4>
-      </div>
-      <div id="collapse3" class="panel-collapse collapse">
-        <br>
-        <p>{{ data.inp }}</p>
-      </div>
+  <div class="panel-heading">
+    <h4 class="panel-title">
+      <a data-toggle="collapse" class="btn btn-primary" href="#collapse3">Show text</a>
+    </h4>
   </div>
+  <div id="collapse3" class="panel-collapse collapse">
+    <br>
+    <p>{{ data.inp }}</p>
+  </div>
+</div>
 
 <br>
-  <form method="post" action="{% url 'test_process_text' %}">
-        {% csrf_token %}
-        <div>
-          <input type="submit" class="btn btn-primary" value="Process new"  />
-          <input type="hidden" name="next" value="{{ next }}" />
-        </div>
-        </form>
+<form method="post" action="{% url 'test_process_text' %}">
+  {% csrf_token %}
+  <div>
+    <input type="submit" class="btn btn-primary" value="Process new" />
+    <input type="hidden" name="next" value="{{ next }}" />
+  </div>
+</form>
 {% endblock %}
