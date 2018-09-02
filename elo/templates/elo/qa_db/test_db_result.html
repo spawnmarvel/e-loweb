@@ -10,9 +10,12 @@
   </div>
 </form>
 
+<p>Titles saved: {{ data.title}}</p>
 
-<p> {{ data.note }}</p>
 <small>
+  Test data:
+  <br>
+  {{ data.note }}
   <br>Test data:
   <br>title: {{ data.title}}
   <br>note : {{ data.note }}
@@ -21,7 +24,7 @@
   <!--<br>{% for k, v in data.items %} Key: {{ k }} Value: {{ v }} {% endfor %}
   <br>form: {{ data.form}}
   -->
-    
+
 </small>
 
 {% endblock %}

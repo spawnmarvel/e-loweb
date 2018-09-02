@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404, render, render_to_response
 from django.http import HttpResponse
+from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from .models import Note
 from .forms import InputText, InputTextQA, DropDownTopic
@@ -80,7 +81,8 @@ def test_get_processed_db(request):
         cmd = "POST"
         form = DropDownTopic(request.POST)
         if form.is_valid():
-            topic = form.cleaned_data["topic"]
+            # topic = form.cleaned_data["topic"]
+            topic = form.cleaned_data["inp_title"]
             # rv = topic
             note = Note.objects.filter(title=topic)
             # return HttpResponse("tile " + topic)
@@ -102,12 +104,16 @@ def test_process_text(request):
     if request.method == "POST":
         form = InputTextQA(request.POST)
         if form.is_valid():
-            inp = form.cleaned_data["inp_text"]
+            inp_title = form.cleaned_data["inp_title"]
+            inp_text = form.cleaned_data["inp_text"]
             dt = " Process with elo"
             # process inp with elo
             # elo_blob = elo.Elo().text_summary(inp)
-            elo_blob = elo.Elo().text_insert(inp)
-            data = {"inp":inp, "dt":dt,"elo":elo_blob}
+            elo_blob = elo.Elo().text_insert(inp_text)
+            elo_list = elo_blob
+            note = Note(title=inp_title, raw_text=inp_text, sentences=12)
+            note.save()
+            data = {"inp":inp_text, "dt":dt,"elo":elo_blob}
             return render(request, "elo/qa_text/test_submited_result.html", {"data": data})
             # return HttpResponse("yes...." + data)
             
