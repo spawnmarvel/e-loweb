@@ -8,23 +8,48 @@
     <input type="submit" class="btn btn-primary" value="Get" name="action" value="GetTopic" />
     <input type="hidden" name="next" value="{{ next }}" />
   </div>
+
 </form>
+<br>
+<!-- text section  -->
+<div class="panel-group">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" class="btn btn-primary" href="#collapse3">Titles saved</a>
+      </h4>
+    </div>
+    <div id="collapse3" class="panel-collapse collapse">
+      <br>
+      <p>{{ data.title }}</p>
+    </div>
+  </div>
 
-<p>Titles saved: {{ data.title}}</p>
+<p>{{ data.note }}</p>
 
-<small>
-  Test data:
-  <br>
-  {{ data.note }}
-  <br>Test data:
-  <br>title: {{ data.title}}
-  <br>note : {{ data.note }}
-  <br>cmd: {{ data.cmd }}
-  <br>dict:{{ data.items}}
-  <!--<br>{% for k, v in data.items %} Key: {{ k }} Value: {{ v }} {% endfor %}
-  <br>form: {{ data.form}}
-  -->
 
-</small>
+<!-- test section  -->
+<div class="panel-group">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" class="btn btn-primary" href="#collapse4">Test data</a>
+      </h4>
+    </div>
+    <div id="collapse4" class="panel-collapse collapse">
+      <br>
+      <small>
+      {{ data.title }}
+          Test data:
+          <br>
+          {{ data.note }}
+          <br>Test data:
+          <br>title: {{ data.title}}
+          <br>note : {{ data.note }}
+          <br>cmd: {{ data.cmd }}
+          <br>dict:{{ data.items}}
+          <!--<br>{% for k, v in data.items %} Key: {{ k }} Value: {{ v }} {% endfor %}
+          <br>form: {{ data.form}} -->
+        </small>
+    </div>
+  </div>
 
 {% endblock %}
