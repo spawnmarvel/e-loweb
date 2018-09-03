@@ -52,7 +52,6 @@ def get_db(request):
             data = {"title":title, "note":note, "cmd":cmd, "form":form}
             return render(request, "elo/qa_db/get_db.html", {"data":data})
         else:
-            fetch_text ="not valid form"
     # GET
     else:
         title = list(Note.objects.values_list("title", flat=True))
