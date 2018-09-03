@@ -1,5 +1,5 @@
 {% extends "elo/base.html" %}
-{% block title %}Process db {% endblock %}
+{% block title %}Test get db {% endblock %}
 {% block content %}
 <h2>Test get db template</h2>
 <p>{{ data }}</p>
@@ -15,7 +15,7 @@
 </p>
 
 {% load bootstrap %}
-  <form method="post" action="{% url 'test_process_db' %}">
+  <form method="post" action="{% url 'test_db_template' %}">
         {% csrf_token %}
         <div>
           <input type="submit" class="btn btn-primary" value="Rand"  />

@@ -45,17 +45,11 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">NLP</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown02">
-                        <a class="dropdown-item" href="{% url 'test_process_text' %}">Process text</a>
-
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">NLP test</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown02">
-                        <a class="dropdown-item" href="{% url 'test_process_text' %}">Process text</a>
-                        <a class="dropdown-item" href="#">Insert db</a>
-                        <a class="dropdown-item" href="{% url 'test_get_processed_db' %}">Get db</a>
-                        <a class="dropdown-item" href="{% url 'test_process_db' %}">Test->get db template</a>
+                        <a class="dropdown-item" href="{% url 'get_db' %}">Get</a>
+                        <a class="dropdown-item" href="{% url 'search_db' %}">Search</a>
+                        <a class="dropdown-item" href="{% url 'insert_db' %}">Insert</a>
+                        <a class="dropdown-item" href="{% url 'delete_db' %}">Delete</a>
+                        <a class="dropdown-item" href="{% url 'test_db_template' %}">Test->get db template</a>
                         <a class="dropdown-item" href="{% url 'test_model' %}">Test->get model ORM</a>
 
                     </div>

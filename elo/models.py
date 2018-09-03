@@ -6,6 +6,7 @@ class Note(models.Model):
     title = models.CharField(max_length = 100,unique=True,  default="")
     raw_text = models.CharField(max_length = 10000)
     sentences = models.BigIntegerField(default=0)
+    words = models.BigIntegerField(default=0)
     
 
     def __str__(self):

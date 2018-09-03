@@ -1,8 +1,8 @@
-{% extends "elo/base.html" %} {% block title %}Process db {% endblock %} {% block content %} {% load bootstrap %}
-<h2>Get process db test</h2>
+{% extends "elo/base.html" %} {% block title %}Get {% endblock %} {% block content %} {% load bootstrap %}
+<h2>Get</h2>
 {% load bootstrap %}
 
-<form method="post" action="{% url 'test_get_processed_db' %}">
+<form method="post" action="{% url 'get_db' %}">
   {% csrf_token %} {{ data.form|bootstrap}}
   <div>
     <input type="submit" class="btn btn-primary" value="Get" name="action" value="GetTopic" />
@@ -15,7 +15,7 @@
 <div class="panel-group">
     <div class="panel-heading">
       <h4 class="panel-title">
-        <a data-toggle="collapse" class="btn btn-primary" href="#collapse3">Titles saved</a>
+        <a data-toggle="collapse" class="btn btn-primary" href="#collapse3">View titles saved</a>
       </h4>
     </div>
     <div id="collapse3" class="panel-collapse collapse">
@@ -24,10 +24,10 @@
     </div>
   </div>
 
-<p>{{ data.note }}</p>
-
+  <p>Get: <br> {{ data.note }}</p>
 
 <!-- test section  -->
+<!--<br>
 <div class="panel-group">
     <div class="panel-heading">
       <h4 class="panel-title">
@@ -46,10 +46,11 @@
           <br>note : {{ data.note }}
           <br>cmd: {{ data.cmd }}
           <br>dict:{{ data.items}}
-          <!--<br>{% for k, v in data.items %} Key: {{ k }} Value: {{ v }} {% endfor %}
-          <br>form: {{ data.form}} -->
+          {% for k, v in data.items %} Key: {{ k }} Value: {{ v }} {% endfor %}
+          <br>form: {{ data.form}}
         </small>
     </div>
   </div>
+   -->
 
 {% endblock %}

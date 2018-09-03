@@ -1,11 +1,13 @@
-{% extends 'elo/base.html' %} {% block title %}Process text{% endblock %} {% block content %}
-<h2>Process text result test</h2>
+{% extends 'elo/base.html' %} {% block title %}Insert saved{% endblock %} {% block content %}
+<h2>Insert saved</h2>
 <!--<a class="nav-link" href="process_text">Process new text input</a> -->
 <p>Comment: {{ data.dt }}</p>
+<p>{{ data.rv }}</p>
 <!--<p>Text: <br>{{ data.elo.0 }}</p>-->
 <p>Sentences: {{ data.elo.1 }}. Words: {{ data.elo.2 }}</p>
 <p>Text is about:
   <br>{{ data.elo.3 }}</p>
+
 {% load bootstrap %}
 
 <!--{{ data.inp }} -->
@@ -22,9 +24,8 @@
     <p>{{ data.inp }}</p>
   </div>
 </div>
-
 <br>
-<form method="post" action="{% url 'test_process_text' %}">
+<form method="post" action="{% url 'insert_db' %}">
   {% csrf_token %}
   <div>
     <input type="submit" class="btn btn-primary" value="Process new" />

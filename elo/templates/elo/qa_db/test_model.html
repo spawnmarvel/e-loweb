@@ -1,7 +1,6 @@
 
-{% extends 'elo/base.html' %}
-{% block content %}
-<h2>Django Model test</h2>
+{% extends "elo/base.html" %} {% block title %}Test get ORM {% endblock %} {% block content %} {% load bootstrap %}
+<h2>Test get ORM</h2>
     <p>Model test Note.objects.all() = </p>
     {% if data %}
     <ul>

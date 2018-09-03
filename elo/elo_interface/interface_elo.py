@@ -52,7 +52,6 @@ class Elo():
                 msg += "."
             word = msg.split(" ")
             words_len = len(word)
-            summary = self.text_summary(msg)
         except UnicodeDecodeError as uce:
             msg = format(uce)
         except Exception as ex:
@@ -60,7 +59,7 @@ class Elo():
         #remove the last - we added
         rm_last = len(msg)
         msg = msg[:rm_last - 1]
-        tu = (msg, sentence_len, words_len, summary)
+        tu = (msg, sentence_len, words_len)
         return tu
 
 
