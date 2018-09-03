@@ -9,7 +9,7 @@ Make a env, install requirements.txt
 ```
 Interface for NLP e-lo
 ```
-
+App with insert, search, get, delete using NLP and IR
 
 ## ToDo
 
