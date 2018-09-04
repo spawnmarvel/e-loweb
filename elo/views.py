@@ -14,9 +14,9 @@ from elo.elo_interface import interface_elo as elo
 #prod
 def index(request):
     # test()
-    dt = datetime.datetime.now()
+    dt = ""# datetime.datetime.now()
     # li = list(Note.objects.values_list("title", flat=True, "words"))
-    li = list(Note.objects.values("title", "words", "hook"))
+    li = "" # list(Note.objects.values("title", "words", "hook"))
     data = {"li": li, "ti":dt}
     # return HttpResponse(rv)
     return render(request, "elo/home/index.html", {"data": data})
@@ -31,27 +31,33 @@ def test():
     n.save()
 
 def search_db(request):
-    comment = "GET"
+    comment = "GET 1"
     form = InputSearch()
     if request.method == "POST":
         form = InputSearch(request.POST)
+        form.fields["choice"].initial = "title"
         if form.is_valid():
+            get_note = ""
             hook = ""
             option = form.cleaned_data["choice"]
             inp_text = form.cleaned_data["inp_text"]
             if option == "title":
                 hook = "title"
-            else:
-                # option = "hook"
+                get_note = Note.objects.filter(title=inp_text)
+            elif option == "hook":
                 hook = "hook"
-                comment = "POST ready for search" + inp_text
-            data =  {"comment":comment,"hook":hook, "form":form}
+                get_note = Note.objects.filter(hook=inp_text)
+            else:
+                hook = "wtf"
+            comment = "POST: Started search with " + format(hook) + "  for " + inp_text
+            data =  {"comment":comment,"hook":hook,"note":get_note, "form":form}
             return render(request, "elo/qa_db/search_db.html", {"data": data, "form":form})
         else:
             pass
     # GET
     else:
-        comment = "GET "
+        comment = "GET 2"
+        form = InputSearch()
     data =  {"comment":comment, "form":form}
     return render(request, "elo/qa_db/search_db.html", {"data": data})
 

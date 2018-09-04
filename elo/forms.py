@@ -27,7 +27,7 @@ class DropDownTopic(forms.Form):
     # topic = forms.ModelMultipleChoiceField(queryset=Note.objects.values_list("title", flat=True))
 
 class InputSearch(forms.Form):
-    ch = (("title", "title"), ("hook", "hook"))
+    ch = (("title", "title"), ("hook", "hook"), ("contains", "contains"), ("frequency high", "frequency high"))
     choice = forms.ChoiceField(choices=ch)
-    inp_text = inp_title = forms.CharField(label="Enter text", max_length = 100)
+    inp_text = forms.CharField(label="Enter text", max_length = 100)
 

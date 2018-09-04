@@ -1,21 +1,19 @@
 {% extends "elo/base.html" %} {% block title %}Search {% endblock %} {% block content %} {% load bootstrap %}
-<h2>Search</h2>
+<h2>Select you choice of operation and search</h2>
 {% load bootstrap %}
 
 
-<form action="{% url 'search_db' %}" method="post">
-    {% csrf_token %}
-    {{ data.form|bootstrap }}
+<form method="post" action="{% url 'search_db' %}">
+    {% csrf_token %} {{ data.form|bootstrap}}
     <input type="submit" value="Search" class="btn btn-primary">
 </form>
+<p>extract data is list</p>
+<p>Get note with {{data.hook }} : <br> {{ data.note }}</p>
+<!--{{ data }}
 
-
-
-
-{{ data }}
 <p>comment: {{ data.comment }}
-    <br>
-    {{ data.hook }}
-</p>
+    <br> {{ data.hook }}
+</p> -->
+
 
 {% endblock %}
