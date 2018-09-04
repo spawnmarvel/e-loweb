@@ -8,8 +8,9 @@
 
 {% load bootstrap %}
 
-<small>10000 characters max <br> Must insert this in db, gunicorn sync worker timout = bad request due to slow TextBlob realtime, t =120s</small>
-<form action="/insert_db" method="post">
+<!--<small>10000 characters max <br> Must insert this in db, gunicorn sync worker timout = bad request due to slow TextBlob realtime, t =120s</small>
+-->
+    <form action="/insert_db" method="post">
     {% csrf_token %}
     {{ form|bootstrap }}
     <input type="submit" value="Submit" class="btn btn-primary">

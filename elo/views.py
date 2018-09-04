@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from .models import Note
-from .forms import InputText, InputTextQA, DropDownTopic
+from .forms import InputText, DropDownTopic, InputSearch
 import random
 import string
 import datetime
@@ -16,7 +16,7 @@ def index(request):
     # test()
     dt = datetime.datetime.now()
     # li = list(Note.objects.values_list("title", flat=True, "words"))
-    li = list(Note.objects.values("title", "words"))
+    li = list(Note.objects.values("title", "words", "hook"))
     data = {"li": li, "ti":dt}
     # return HttpResponse(rv)
     return render(request, "elo/home/index.html", {"data": data})
@@ -31,10 +31,29 @@ def test():
     n.save()
 
 def search_db(request):
-    comment = "In progress, IR search"
-    data =  {"data":comment}
+    comment = "GET"
+    form = InputSearch()
+    if request.method == "POST":
+        form = InputSearch(request.POST)
+        if form.is_valid():
+            hook = ""
+            option = form.cleaned_data["choice"]
+            inp_text = form.cleaned_data["inp_text"]
+            if option == "title":
+                hook = "title"
+            else:
+                # option = "hook"
+                hook = "hook"
+                comment = "POST ready for search" + inp_text
+            data =  {"comment":comment,"hook":hook, "form":form}
+            return render(request, "elo/qa_db/search_db.html", {"data": data, "form":form})
+        else:
+            pass
+    # GET
+    else:
+        comment = "GET "
+    data =  {"comment":comment, "form":form}
     return render(request, "elo/qa_db/search_db.html", {"data": data})
-
 
 def get_db(request):
     title = list(Note.objects.values_list("title", flat=True))
@@ -52,10 +71,10 @@ def get_db(request):
             data = {"title":title, "note":note, "cmd":cmd, "form":form}
             return render(request, "elo/qa_db/get_db.html", {"data":data})
         else:
+            pass
     # GET
     else:
         title = list(Note.objects.values_list("title", flat=True))
-        form = DropDownTopic()
     data = {"title":title, "note":note, "cmd":cmd, "form":form}
     return render(request, "elo/qa_db/get_db.html", {"data": data})
 
@@ -70,15 +89,16 @@ def delete_db(request):
 @login_required
 def insert_db(request):
     if request.method == "POST":
-        form = InputTextQA(request.POST)
+        form = InputText(request.POST)
         if form.is_valid():
             inp_title = form.cleaned_data["inp_title"]
             inp_text = form.cleaned_data["inp_text"]
+            inp_hook = form.cleaned_data["inp_hook"]
             dt = " Process with elo"
             # process inp with elo
             # elo_blob = elo.Elo().text_summary(inp)
             tu = elo.Elo().text_insert(inp_text)
-            note = Note(title=inp_title, raw_text=tu[0], sentences=tu[1], words=tu[2])
+            note = Note(title=inp_title, raw_text=tu[0], sentences=tu[1], words=tu[2], hook=inp_hook)
             note.save()
             rv = "Text saved with id: " + format(note.id)
             data = {"inp":inp_text, "dt":dt,"elo":tu, "rv":rv}

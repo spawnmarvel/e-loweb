@@ -7,6 +7,7 @@ class Note(models.Model):
     raw_text = models.CharField(max_length = 10000)
     sentences = models.BigIntegerField(default=0)
     words = models.BigIntegerField(default=0)
+    hook = models.CharField(max_length=20, default="")
     
 
     def __str__(self):

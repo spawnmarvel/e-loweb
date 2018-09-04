@@ -2,6 +2,20 @@
 <h2>Search</h2>
 {% load bootstrap %}
 
-<p>{{ data }}</p>
+
+<form action="{% url 'search_db' %}" method="post">
+    {% csrf_token %}
+    {{ data.form|bootstrap }}
+    <input type="submit" value="Search" class="btn btn-primary">
+</form>
+
+
+
+
+{{ data }}
+<p>comment: {{ data.comment }}
+    <br>
+    {{ data.hook }}
+</p>
 
 {% endblock %}
