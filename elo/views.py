@@ -26,9 +26,11 @@ def about(request):
     data = {"data:": "some text"}
     return render(request, "elo/home/about.html", {"data": data})
 
-def test():
-    n = Note(raw_text = "This is a test", sentences=1)
-    n.save()
+def get_meta(request):
+    dt = datetime.datetime.now()
+    li = list(Note.objects.values("title", "words", "hook"))
+    data = {"li":li, "ti":dt}
+    return render(request, "elo/qa_db/get_meta.html", {"data": data})
 
 def search_db(request):
     comment = "GET 1"

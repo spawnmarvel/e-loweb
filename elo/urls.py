@@ -6,6 +6,7 @@ urlpatterns = [
    path("", views.index, name="index"),
    path("about", views.about, name="about"),
    path("get_db", views.get_db, name="get_db"),
+   path("get_meta", views.get_meta, name="get_meta"),
    path("insert_db", views.insert_db, name="insert_db"),
    path("search_db", views.search_db, name="search_db"),
    path("delete_db", views.delete_db, name="delete_db"),
