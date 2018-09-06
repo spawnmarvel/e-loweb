@@ -7,8 +7,9 @@
     {% csrf_token %} {{ data.form|bootstrap}}
     <input type="submit" value="Search" class="btn btn-primary">
 </form>
-<p>extract data is list</p>
-<p>Get note with {{data.hook }} : <br> {{ data.note }}</p>
+<p>extract data as list or dict</p>
+<p>Comment: <span style="color:blue">{{data.comment }}</span></p>
+<p>Result: {{ data.note }}</p>
 <!--{{ data }}
 
 <p>comment: {{ data.comment }}

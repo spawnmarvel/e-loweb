@@ -29,7 +29,8 @@ def about(request):
 def get_meta(request):
     dt = datetime.datetime.now()
     li = list(Note.objects.values("title", "words", "hook"))
-    data = {"li":li, "ti":dt}
+    fi = list(Note._meta.get_fields())
+    data = {"li":li, "ti":dt, "fi":fi}
     return render(request, "elo/qa_db/get_meta.html", {"data": data})
 
 def search_db(request):
@@ -43,15 +44,21 @@ def search_db(request):
             hook = ""
             option = form.cleaned_data["choice"]
             inp_text = form.cleaned_data["inp_text"]
-            if option == "title":
-                hook = "title"
+            if option == "title is":
+                hook = "title is"
                 get_note = Note.objects.filter(title=inp_text)
             elif option == "hook":
                 hook = "hook"
                 get_note = Note.objects.filter(hook=inp_text)
+            elif option == "text contains":
+                hook = "text contains"
+            elif option == "word frequency high":
+                hook = "word frequency high"
+            elif option == "multiple words separated by comma":
+                hook = "multiple words separated by comma"
             else:
                 hook = "wtf"
-            comment = "POST: Started search with " + format(hook) + "  for " + inp_text
+            comment = "Started search with type: " + format(hook) + ":  for input: " + inp_text
             data =  {"comment":comment,"hook":hook,"note":get_note, "form":form}
             return render(request, "elo/qa_db/search_db.html", {"data": data, "form":form})
         else:
