@@ -8,6 +8,7 @@ import random
 import string
 import datetime
 from elo.elo_interface import interface_elo as elo
+from django.db.models import Q
 # Create your views here.
 
 #####################################################
@@ -52,6 +53,8 @@ def search_db(request):
                 get_note = Note.objects.filter(hook=inp_text)
             elif option == "text contains":
                 hook = "text contains"
+                # a simple search, but install psql and search with that or cache
+                get_note = Note.objects.filter(Q(raw_text__icontains=str(inp_text)))
             elif option == "word frequency high":
                 hook = "word frequency high"
             elif option == "multiple words separated by comma":
