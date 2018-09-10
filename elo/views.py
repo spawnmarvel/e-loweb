@@ -55,6 +55,7 @@ def search_db(request):
                 hook = "text contains"
                 # a simple search, but install psql and search with that or cache
                 get_note = Note.objects.filter(Q(raw_text__icontains=str(inp_text)))
+                # preform a new query with the id and put all in a list or dict
             elif option == "word frequency high":
                 hook = "word frequency high"
             elif option == "multiple words separated by comma":

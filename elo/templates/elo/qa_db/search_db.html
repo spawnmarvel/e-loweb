@@ -1,5 +1,8 @@
 {% extends "elo/base.html" %} {% block title %}Search {% endblock %} {% block content %} {% load bootstrap %}
-<h2>Select you choice of operation and search</h2>
+<h2>Select your choice of operation and search</h2>
+<p>This search uses Django's own
+    <a href="https://docs.djangoproject.com/en/2.1/ref/models/querysets/" target="_blank">icontains</a>
+</p>
 {% load bootstrap %}
 
 
@@ -7,14 +10,14 @@
     {% csrf_token %} {{ data.form|bootstrap}}
     <input type="submit" value="Search" class="btn btn-primary">
 </form>
-<p>extract data as list or dict</p>
-<p>Comment: <span style="color:blue">{{data.comment }}</span></p>
-<p>Result: {{ data.note }}</p>
-<!--{{ data }}
-
-<p>comment: {{ data.comment }}
-    <br> {{ data.hook }}
-</p> -->
+<p>Comment:
+    <span style="color:blue">{{data.comment }}</span>
+</p>
 
 
-{% endblock %}
+<!--<p>Result: {{ data.note }}</p>-->
+
+<p>Result:</p>
+{% for note in data.note %}
+<div class="well well-lg">{{ note }}</div><br>
+{% endfor %} {% endblock %}

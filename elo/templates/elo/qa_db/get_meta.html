@@ -5,12 +5,17 @@
     definition or description." Metadata summarizes basic information about data, which can make finding and working with
     particular instances of data easier.</p>
 
-<p>Metadata: <br>Model fields: {{ data.fi }}</p>
+<p>Metadata:
+    <br>Model fields:</p>
+<div class="well well-lg">{{ data.fi }}</div>
 <!-- k  = keys, v  = list-->
 <p>
+    <br>
     <span style="color:blue">The result could take a bit time to load, but hey, then it is big data!</span>
 </p>
 
 <p>Metadata in db at time {{data.ti}} :
     <br>
-    <br>{{ data.li }} {% endblock %}
+    
+    <div class="well well-lg">{{ data.li }}</div>
+    {% endblock %}
