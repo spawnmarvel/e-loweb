@@ -4,14 +4,12 @@ from elo_interface import stop_words
 stop_list = stop_words.stopwords
 
 def textToDict(words):
-    # freq = [words.count(w) for w in words]
 	freq = []
 	for w in words:
 	    freq.append(words.count(w))
 	return dict(zip(words, freq))    
 
 def textFreqSort(words):
-    # aux = [(words[key], key) for key in words]
 	aux = []
 	for k in words:
 	    item = (words[k], k)
@@ -28,11 +26,9 @@ def removeStopWords(words):
 		    result.append(w)
 			
     return result	
-    # return[w for w in words if w not in stoplist]
 
-	
-def stripNonAlphaNum(text):
-    return re.compile(r'\W+', re.UNICODE).split(text)
+def stripNonAlphaNum(words):
+    return re.compile(r'\W+', re.UNICODE).split(words)
 
 
 def createIndex(words):

@@ -1,0 +1,15 @@
+"GET /about HTTP/1.1" 200 6475
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3855
+"GET / HTTP/1.1" 200 12642
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3855
+"GET /about HTTP/1.1" 200 6475
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3855
+"GET / HTTP/1.1" 200 12642
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3855
+"GET / HTTP/1.1" 200 12642
+Not Found: /favicon.ico
+"GET /favicon.ico HTTP/1.1" 404 3855
