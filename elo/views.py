@@ -164,7 +164,7 @@ def test_db_template(request):
     return render(request, "elo/qa_db/test_db_template.html", {"data": data})
 
 
-def test_rest(request):
+def api_(request):
     data = {}
     return render(request, "elo/qa_db/test_rest.html", data)
 
@@ -187,7 +187,7 @@ def api_get_meta(request):
     x = []
     y = []
     for n in obj:
-        x.append("Title: "+ str(n.title) + ". Hook: " + str(n.hook) + ". Words: "+ str(n.words))
+        x.append("Id: " + n.id + ". " + "Title: "+ str(n.title) + ". Hook: " + str(n.hook) + ". Words: "+ str(n.words))
     context["data"] = x
     t = json.dumps(context)
     return HttpResponse(t)

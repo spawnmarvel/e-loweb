@@ -13,7 +13,7 @@ urlpatterns = [
    path("api_get_meta", views.api_get_meta, name="api_get_meta"),
    path("test_db_template", views.test_db_template, name="test_db_template"),
    path("test_model", views.test_model, name="test_model"),
-   path("test_rest", views.test_rest, name="test_rest"),
+   path("api_", views.api_, name="api_"),
    path('accounts/', include('django.contrib.auth.urls')),
 ]
 
