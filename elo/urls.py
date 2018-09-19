@@ -10,6 +10,7 @@ urlpatterns = [
    path("insert_db", views.insert_db, name="insert_db"),
    path("search_db", views.search_db, name="search_db"),
    path("delete_db", views.delete_db, name="delete_db"),
+   path("api_get_meta", views.api_get_meta, name="api_get_meta"),
    path("test_db_template", views.test_db_template, name="test_db_template"),
    path("test_model", views.test_model, name="test_model"),
    path("test_rest", views.test_rest, name="test_rest"),

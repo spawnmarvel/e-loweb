@@ -11,6 +11,8 @@ import logging
 from elo.elo_interface import interface_elo as elo
 from django.db.models import Q
 
+# api
+import json
 logger = logging.getLogger(__name__)
 
 # Create your views here.
@@ -175,3 +177,17 @@ def error_404(request):
 def error_500(request):
     data = {"data": 500}
     return render(request, "elo/500.html", data)
+
+
+# API
+def api_get_meta(request):
+    obj = Note.objects.all()
+    context = {}
+    context["status"] = 200
+    x = []
+    y = []
+    for n in obj:
+        x.append("Title: "+ str(n.title) + ". Hook: " + str(n.hook) + ". Words: "+ str(n.words))
+    context["data"] = x
+    t = json.dumps(context)
+    return HttpResponse(t)
