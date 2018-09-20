@@ -22,5 +22,5 @@ urlpatterns = [
     path("", include("elo.urls")),
     path('admin/', admin.site.urls),
 ]
-handler404 = elo_views.error_404
-handler500 = elo_views.error_500
+handler404 = elo_views.gui_views.error_404
+handler500 = elo_views.gui_views.error_500

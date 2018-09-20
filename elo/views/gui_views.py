@@ -2,8 +2,8 @@ from django.shortcuts import get_object_or_404, render, render_to_response
 from django.http import HttpResponse
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
-from .models import Note
-from .forms import InputText, DropDownTopic, InputSearch
+from elo.models import Note
+from elo.forms import InputText, DropDownTopic, InputSearch
 import random
 import string
 import datetime
@@ -178,16 +178,3 @@ def error_500(request):
     data = {"data": 500}
     return render(request, "elo/500.html", data)
 
-
-# API
-def api_get_meta(request):
-    obj = Note.objects.all()
-    context = {}
-    context["status"] = 200
-    x = []
-    y = []
-    for n in obj:
-        x.append("Id: " + str(n.id) + ". " + "Title: "+ str(n.title) + ". Hook: " + str(n.hook) + ". Words: "+ str(n.words))
-    context["data"] = x
-    t = json.dumps(context)
-    return HttpResponse(t)
