@@ -187,7 +187,7 @@ def api_get_meta(request):
     x = []
     y = []
     for n in obj:
-        x.append("Id: " + n.id + ". " + "Title: "+ str(n.title) + ". Hook: " + str(n.hook) + ". Words: "+ str(n.words))
+        x.append("Id: " + str(n.id) + ". " + "Title: "+ str(n.title) + ". Hook: " + str(n.hook) + ". Words: "+ str(n.words))
     context["data"] = x
     t = json.dumps(context)
     return HttpResponse(t)
