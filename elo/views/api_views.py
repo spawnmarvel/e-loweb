@@ -13,6 +13,16 @@ def api_get_meta(request):
     y = []
     for n in obj:
         x.append("Id: " + str(n.id) + ". " + "Title: "+ str(n.title) + ". Hook: " + str(n.hook) + ". Words: "+ str(n.words))
-    context["data"] = x
+    context["data meta"] = x
     t = json.dumps(context)
     return HttpResponse(t)
+
+def api_get_hook(request, db_hook):
+    obj = Note.objects.filter(hook=db_hook)
+    x = []
+    context = {}
+    for d in obj:
+        x.append("Id: " + str(d.id) + ". Text: " + str(d.raw_text))
+    context["data all by hook"] = x
+    t = json.dumps(context)
+    return HttpResponse(t) 
